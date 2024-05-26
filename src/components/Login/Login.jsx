@@ -1,18 +1,24 @@
 import Lottie from "lottie-react";
-import { FaGithub } from "react-icons/fa";
-import { FcGoogle } from "react-icons/fc";
 import { Link } from "react-router-dom";
-import ani from "./login.json"
+import ani from "./login.json";
+import GoogleLogin from "../Login-Registration/GoogleLogin";
+import GitHubLogin from "../Login-Registration/GitHubLogin";
 
 export default function Login() {
+  const handleSUbmit = (e) => {
+    e.preventDefault();
+
+    const form = e.target;
+    const email = form.email.value;
+    const password = form.password.value;
+
+    console.log(email, password);
+  };
   return (
     <div>
       <div className="flex flex-col-reverse lg:flex-row justify-center items-center gap-3 py-3">
         <div className="flex justify-center items-center lg:py-[5%] px-[2%] md:w-1/2">
-          <form
-            className="max-w-sm w-full text-center"
-            // onSubmit={handleSubmit(onSubmit)}
-          >
+          <form onSubmit={handleSUbmit} className="max-w-sm w-full text-center">
             <div className="form-control">
               <h1 className=" text-3xl font-semibold text-center my-5 border-b-2 border-[#f4976c] py-2">
                 Login Now
@@ -26,10 +32,6 @@ export default function Login() {
                 type="text"
                 placeholder="Email"
                 className="input input-bordered input-accent w-full"
-                // {...register("Email", {
-                //   required: true,
-                //   pattern: /^\S+@\S+$/i,
-                // })}
               />
 
               <label className="label">
@@ -40,7 +42,6 @@ export default function Login() {
               <input
                 type="password"
                 placeholder="Password"
-                // {...register("Password", { required: true })}
                 className="input input-bordered input-accent w-full "
               />
 
@@ -60,16 +61,11 @@ export default function Login() {
               </div>
               <div className="divider">Or Sign in With</div>
               <div className="flex justify-around items-center gap-2">
-                <div
-                //   onClick={handleGoogleSignin}
-                  className=" bg-green-400 px-5 py-3 rounded-md flex justify-center items-center"
-                >
-                  <FcGoogle className="text-xl"></FcGoogle>
-                  <button className="text-white font-semibold">Google</button>
+                <div>
+                  <GoogleLogin />
                 </div>
-                <div className=" bg-cyan-400 px-5 py-3 rounded-md flex justify-center items-center">
-                  <FaGithub className="text-xl text-black"></FaGithub>
-                  <button className="text-black font-semibold">GitHub</button>
+                <div>
+                  <GitHubLogin />
                 </div>
               </div>
             </div>

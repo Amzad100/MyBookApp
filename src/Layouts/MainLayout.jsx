@@ -4,7 +4,7 @@ import Footer from "../components/shered/Footer/Footer";
 
 export default function MainLayout() {
   return (
-    <div className="bg-[#8ce892]">
+    <div>
       <Navber />
       <Outlet />
       <Footer />

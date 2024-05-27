@@ -7,7 +7,7 @@ export default function HomePage() {
   useTitle('Home');
   return (
     <>
-      <div>
+      <div  className="max-w-7xl mx-auto">
         <Banner />
         <BooksCard/>
         <About/>

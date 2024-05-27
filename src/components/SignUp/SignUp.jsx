@@ -1,13 +1,16 @@
 import Lottie from "lottie-react";
 import ani from "./signup.json";
 import useTitle from "../../hooks/useTitle";
-import { useContext } from "react";
-import { AuthContext } from "../../AuthProvider/AuthProvider";
+import Swal from "sweetalert2";
+import useAuth from "../../hooks/useAuth";
+import { useNavigate } from "react-router-dom";
+import { useForm } from "react-hook-form";
 
 export default function SignUp() {
   useTitle("SignUP");
-
-  const { createUser } = useContext(AuthContext);
+  const { createUser } = useAuth();
+  const { reset } = useForm();
+  const navigate = useNavigate();
 
   const handleSignUp = (event) => {
     event.preventDefault();
@@ -21,6 +24,14 @@ export default function SignUp() {
       .then((resutl) => {
         const user = resutl.user;
         console.log(user);
+        reset();
+        Swal.fire({
+          icon: "success",
+          title: "SignUp successfully",
+          showConfirmButton: false,
+          timer: 1500,
+        });
+        navigate("/");
       })
       .catch((error) => console.log(error));
   };
@@ -79,7 +90,7 @@ export default function SignUp() {
               />
 
               <div className="text-center mt-[4%]">
-                <button type="submit" className="btn">
+                <button type="submit" className="my-btn">
                   SignUP
                 </button>
               </div>

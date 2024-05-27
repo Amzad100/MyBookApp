@@ -1,30 +1,47 @@
 import Lottie from "lottie-react";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import ani from "./login.json";
 import GoogleLogin from "../Login-Registration/GoogleLogin";
 import GitHubLogin from "../Login-Registration/GitHubLogin";
 import useTitle from "../../hooks/useTitle";
-import { useContext } from "react";
-import { AuthContext } from "../../AuthProvider/AuthProvider";
+import Swal from "sweetalert2";
+import useAuth from "../../hooks/useAuth";
+import { useEffect } from "react";
 
 export default function Login() {
   useTitle("Login");
-  const { signIn } = useContext(AuthContext);
+  const { signIn, user } = useAuth();
+  const navigate = useNavigate();
+  const location = useLocation();
 
-  const handleSignIn = (event) => {
+  const from = location?.state?.from?.pathname || "/";
+
+  const handleSignIn = async (event) => {
     event.preventDefault();
     const form = event.target;
     const email = form.email.value;
     const password = form.password.value;
     console.log(email, password);
 
-    signIn(email, password)
+    await signIn(email, password)
       .then((resutl) => {
         const user = resutl.user;
         console.log(user);
+        Swal.fire({
+          icon: "success",
+          title: "Login successfully",
+          showConfirmButton: false,
+          timer: 1500,
+        });
       })
       .catch((error) => console.log(error));
   };
+
+  useEffect(() => {
+    if (user) {
+      navigate(from, { replace: true });
+    }
+  }, [user, from, navigate]);
 
   return (
     <div>
@@ -69,7 +86,7 @@ export default function Login() {
               </div>
 
               <div className="text-center mt-[4%]">
-                <button type="submit" className="btn">
+                <button type="submit" className="my-btn">
                   Login
                 </button>
               </div>

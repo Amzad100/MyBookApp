@@ -1,14 +1,29 @@
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
 import { FaLockOpen } from "react-icons/fa";
+import Swal from "sweetalert2";
 
 export default function Navber() {
   const { user, logout } = useAuth();
 
   const handleLogOut = () => {
     logout()
-      .then()
+      .then(() => {
+        Swal.fire({
+          icon: "success",
+          title: "LogOut successfully",
+          showConfirmButton: false,
+          timer: 1500,
+        });
+      })
       .catch((error) => console.log(error));
+  };
+
+  const navLinkstyle = ({ isActive }) => {
+    return {
+      fontWeight: isActive ? "bold" : "normal",
+      color: isActive ? "white" : "black",
+    };
   };
   return (
     <div>
@@ -36,17 +51,25 @@ export default function Navber() {
               className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
             >
               <li>
-                <Link to={"/"}>Home</Link>
+                <NavLink style={navLinkstyle} to={"/"}>
+                  Home
+                </NavLink>
               </li>
               <li>
-                <Link to={"/about"}>About Us</Link>
+                <NavLink style={navLinkstyle} to={"/about"}>
+                  About Us
+                </NavLink>
               </li>
               <li>
-                <Link to={"/contactUs"}>Contact Us</Link>
+                <NavLink style={navLinkstyle} to={"/contactUs"}>
+                  Contact Us
+                </NavLink>
               </li>
               {user && (
                 <li>
-                  <Link to={"/dashboard"}>Dashboard</Link>
+                  <NavLink style={navLinkstyle} to={"/dashboard"}>
+                    Dashboard
+                  </NavLink>
                 </li>
               )}
             </ul>
@@ -58,17 +81,25 @@ export default function Navber() {
         <div className="navbar-center hidden lg:flex">
           <ul className="menu menu-horizontal px-1">
             <li>
-              <Link to={"/"}>Home</Link>
+              <NavLink style={navLinkstyle} to={"/"}>
+                Home
+              </NavLink>
             </li>
             <li>
-              <Link to={"/about"}>About Us</Link>
+              <NavLink style={navLinkstyle} to={"/about"}>
+                About Us
+              </NavLink>
             </li>
             <li>
-              <Link to={"/contactUs"}>Contact Us</Link>
+              <NavLink style={navLinkstyle} to={"/contactUs"}>
+                Contact Us
+              </NavLink>
             </li>
             {user && (
               <li>
-                <Link to={"/dashboard"}>Dashboard</Link>
+                <NavLink style={navLinkstyle} to={"/dashboard"}>
+                  Dashboard
+                </NavLink>
               </li>
             )}
           </ul>
@@ -76,16 +107,16 @@ export default function Navber() {
         <div className="navbar-end ">
           {user && (
             <Link onClick={handleLogOut} className="btn mr-1">
-              <FaLockOpen className="me-2" />
+              <FaLockOpen className="me-2 my-btn" />
               Logout
             </Link>
           )}
           {!user && (
             <>
-              <Link to="/login" className="btn mr-1">
+              <Link to="/login" className="my-btn mr-1">
                 Login
               </Link>
-              <Link to="/signup" className="btn mr-1">
+              <Link to="/signup" className="my-btn mr-1">
                 SignUp
               </Link>
             </>
@@ -98,7 +129,10 @@ export default function Navber() {
             <div className="w-10 rounded-full">
               <img
                 alt="Tailwind CSS Navbar component"
-                src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg"
+                src={
+                  user?.photoURL ||
+                  "https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg"
+                }
               />
             </div>
           </div>

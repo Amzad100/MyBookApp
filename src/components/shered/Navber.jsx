@@ -1,6 +1,15 @@
 import { Link } from "react-router-dom";
+import useAuth from "../../hooks/useAuth";
+import { FaLockOpen } from "react-icons/fa";
 
 export default function Navber() {
+  const { user, logout } = useAuth();
+
+  const handleLogOut = () => {
+    logout()
+      .then()
+      .catch((error) => console.log(error));
+  };
   return (
     <div>
       <div className="navbar">
@@ -35,13 +44,16 @@ export default function Navber() {
               <li>
                 <Link to={"/contactUs"}>Contact Us</Link>
               </li>
-              <li>
-                <Link to={"/dashboard"}>Dashboard</Link>
-              </li>
+              {user && (
+                <li>
+                  <Link to={"/dashboard"}>Dashboard</Link>
+                </li>
+              )}
             </ul>
           </div>
-          {/* <a className="btn btn-ghost text-xl">MyBook</a> */}
-          <Link className="btn btn-ghost text-xl" to={"/"}>MyBook</Link>
+          <Link className="btn btn-ghost text-xl" to={"/"}>
+            MyBook
+          </Link>
         </div>
         <div className="navbar-center hidden lg:flex">
           <ul className="menu menu-horizontal px-1">
@@ -54,18 +66,30 @@ export default function Navber() {
             <li>
               <Link to={"/contactUs"}>Contact Us</Link>
             </li>
-            <li>
-              <Link to={"/dashboard"}>Dashboard</Link>
-            </li>
+            {user && (
+              <li>
+                <Link to={"/dashboard"}>Dashboard</Link>
+              </li>
+            )}
           </ul>
         </div>
         <div className="navbar-end ">
-          <Link to="/login" className="btn mr-1">
-            Login
-          </Link>
-          <Link to="/signup" className="btn mr-1">
-            SignUp
-          </Link>
+          {user && (
+            <Link onClick={handleLogOut} className="btn mr-1">
+              <FaLockOpen className="me-2" />
+              Logout
+            </Link>
+          )}
+          {!user && (
+            <>
+              <Link to="/login" className="btn mr-1">
+                Login
+              </Link>
+              <Link to="/signup" className="btn mr-1">
+                SignUp
+              </Link>
+            </>
+          )}
           <div
             tabIndex={0}
             role="button"

@@ -7,12 +7,13 @@ import ErrorPage from "../pages/ErrorPage";
 import DashboardLayout from "../Layouts/DashboardLayout";
 import Dashboard from "../pages/Dashboard";
 import About from "../pages/About";
+import PrivateRoute from "./PrivateRouts/PrivateRoutes";
 
 export const Router = createBrowserRouter([
   {
     path: "/",
     element: <MainLayout />,
-    errorElement: <ErrorPage/>,
+    errorElement: <ErrorPage />,
     children: [
       {
         path: "/",
@@ -42,13 +43,17 @@ export const Router = createBrowserRouter([
   },
   {
     path: "dashboard",
-    element: <DashboardLayout/>,
-    errorElement: <ErrorPage/>,
+    element: <DashboardLayout />,
+    errorElement: <ErrorPage />,
     children: [
       {
         path: "",
-        element: <Dashboard/>
-      }
-    ]
+        element: (
+          <PrivateRoute>
+            <Dashboard />
+          </PrivateRoute>
+        ),
+      },
+    ],
   },
 ]);

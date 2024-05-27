@@ -40,7 +40,8 @@ export default function Navber() {
               </li>
             </ul>
           </div>
-          <a className="btn btn-ghost text-xl">MyBook</a>
+          {/* <a className="btn btn-ghost text-xl">MyBook</a> */}
+          <Link className="btn btn-ghost text-xl" to={"/"}>MyBook</Link>
         </div>
         <div className="navbar-center hidden lg:flex">
           <ul className="menu menu-horizontal px-1">

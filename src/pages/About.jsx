@@ -1,6 +1,8 @@
 import { FaFacebook, FaYoutube, FaTwitter, FaInstagram, FaLinkedin } from 'react-icons/fa';
+import useTitle from '../hooks/useTitle';
 
 export default function About() {
+  useTitle('AboutUs');
   return (
     <div>
       <div className="w-full lg:w-9/12 mx-auto">

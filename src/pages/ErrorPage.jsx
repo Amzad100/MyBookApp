@@ -2,8 +2,10 @@ import Lottie from "lottie-react";
 import { FaArrowLeft } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import errorImage from "../assets/errorPage.json"
+import useTitle from "../hooks/useTitle";
 
 export default function ErrorPage() {
+  useTitle('Error');
   return (
     <div>
       <div className="  flex justify-center items-center">

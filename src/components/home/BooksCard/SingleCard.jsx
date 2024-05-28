@@ -1,19 +1,27 @@
-export default function SingleCard() {
+import { Link } from "react-router-dom";
+
+// eslint-disable-next-line react/prop-types
+export default function SingleCard({ book }) {
+  // eslint-disable-next-line react/prop-types
+  const { id, title, author, price, img_url } = book;
   return (
     <div>
-      <div className="card w-80 bg-base-100 shadow-xl">
+      <div className="card bg-base-100 shadow-xl">
         <figure className="px-10 pt-10">
           <img
-            src="https://i.ibb.co/R9SbSkX/images.jpg"
+            src={img_url}
             alt="Shoes"
-            className="rounded-xl"
+            className="rounded-xl w-full h-[350px]"
           />
         </figure>
-        <div className="card-body items-center text-center">
-          <h2 className="card-title">Books!</h2>
-          <p>If you want to be brilliant, you must read books!</p>
+        <div className="card-body items-center">
+          <h2 className="card-title">{title}</h2>
+          <p>Price: {price}</p>
+          <p>{author}</p>
           <div className="card-actions">
-            <button className="btn btn-primary">Buy Now</button>
+            <Link to={`/books/${id}`}>
+              <button className="btn btn-primary">View Details</button>
+            </Link>
           </div>
         </div>
       </div>

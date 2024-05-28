@@ -8,6 +8,10 @@ import DashboardLayout from "../Layouts/DashboardLayout";
 import Dashboard from "../pages/Dashboard";
 import About from "../pages/About";
 import PrivateRoute from "./PrivateRouts/PrivateRoutes";
+import Allbooks from "../components/Dashboard/Allbooks";
+import AddBook from "../components/Dashboard/AddBook";
+import ContactUs from "../pages/ContactUs";
+import BookDetails from "../pages/BookDetails";
 
 export const Router = createBrowserRouter([
   {
@@ -18,6 +22,12 @@ export const Router = createBrowserRouter([
       {
         path: "/",
         element: <HomePage />,
+        loader: () => fetch("http://localhost:3000/books"),
+      },
+      {
+        path: "/books/:id",
+        element: <BookDetails/>,
+        loader: ({params}) => fetch(`http://localhost:3000/books/${params.id}`),
       },
       {
         path: "about",
@@ -25,11 +35,7 @@ export const Router = createBrowserRouter([
       },
       {
         path: "contactUs",
-        element: <HomePage />,
-      },
-      {
-        path: "allbooks",
-        element: <HomePage />,
+        element: <ContactUs />,
       },
       {
         path: "login",
@@ -53,6 +59,14 @@ export const Router = createBrowserRouter([
             <Dashboard />
           </PrivateRoute>
         ),
+      },
+      {
+        path: "dashboard/allbooks",
+        element: <Allbooks />,
+      },
+      {
+        path: "dashboard/addbook",
+        element: <AddBook />,
       },
     ],
   },

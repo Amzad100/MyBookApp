@@ -1,4 +1,8 @@
-export default function AddBook() {
+import { useLoaderData } from "react-router-dom";
+
+export default function UpdateBook() {
+  const book = useLoaderData();
+  console.log(book);
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -10,25 +14,13 @@ export default function AddBook() {
     const description = form.description.value;
     const image_url = form.image_url.value;
 
-    const data = { id, title, price, description,author, image_url };
-
-    await fetch("http://localhost:3000/books", {
-      method: "POST",
-      headers: {
-        "Content-type": "application/json",
-      },
-      body: JSON.stringify(data),
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        console.log(data);
-        form.reset();
-      });
+    const data = { id, title, price, description, author, image_url };
+    console.log(data);
   };
 
   return (
     <div>
-      <h1 className="text-center text-6xl font-bold">Add a book page</h1>
+      <h1 className="text-center text-6xl font-bold">Update Book</h1>
       <div className="card">
         <form onSubmit={handleSubmit}>
           <div className="text-center mt-5 mb-5 grid md:grid-cols-2 gap-5">

@@ -26,8 +26,9 @@ export const Router = createBrowserRouter([
       },
       {
         path: "/books/:id",
-        element: <BookDetails/>,
-        loader: ({params}) => fetch(`http://localhost:3000/books/${params.id}`),
+        element: <BookDetails />,
+        loader: ({ params }) =>
+          fetch(`http://localhost:3000/books/${params.id}`),
       },
       {
         path: "about",
@@ -62,12 +63,21 @@ export const Router = createBrowserRouter([
       },
       {
         path: "dashboard/allbooks",
-        element: <Allbooks />,
+        element: (
+          <PrivateRoute>
+            <Allbooks />
+          </PrivateRoute>
+        ),
       },
       {
         path: "dashboard/addbook",
-        element: <AddBook />,
+        element: (
+          <PrivateRoute>
+            <AddBook />
+          </PrivateRoute>
+        ),
       },
+      
     ],
   },
 ]);

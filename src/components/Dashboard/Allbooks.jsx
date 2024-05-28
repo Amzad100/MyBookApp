@@ -1,23 +1,43 @@
-import { useEffect, useState } from "react"
-import SingleCard from "../home/BooksCard/SingleCard";
+import { useEffect, useState } from "react";
+import SingleBookCardDashboard from "./SingleBookCardDashboard";
 
 export default function Allbooks() {
   const [books, setBooks] = useState([]);
 
-  useEffect(()=>{
+  useEffect(() => {
     fetch("http://localhost:3000/books")
-    .then((res) => res.json())
-    .then((data)=> setBooks(data));
-  })
+      .then((res) => res.json())
+      .then((data) => setBooks(data));
+  });
 
   return (
     <div>
       <h1 className="text-5xl font-bold text-center">All books here</h1>
-      <div className="my-16 grid gap-3 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
-        {
-          books.map(book=><SingleCard key={book.id} book={book}></SingleCard>)
-        }
+
+      <div className="overflow-x-auto">
+        <table className="table table-xs">
+          <thead>
+            <tr>
+              <th>Id</th>
+              <th>Image</th>
+              <th>Titel</th>
+              <th>Author</th>
+              <th>Price</th>
+              <th>View Details</th>
+              <th>Update Book</th>
+              <th>Delete Book</th>
+            </tr>
+          </thead>
+          <tbody>
+            {books.map((book) => (
+              <SingleBookCardDashboard
+                key={book.id}
+                book={book}
+              ></SingleBookCardDashboard>
+            ))}
+          </tbody>
+        </table>
       </div>
     </div>
-  )
+  );
 }

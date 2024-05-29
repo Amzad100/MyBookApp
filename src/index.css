@@ -23,8 +23,7 @@
 .my-footer{
     box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
 }
-
-#role, #aboutus, #homePageTeacher, #our-partner, #our-value{
+ #shadow{
     padding: 50px 0;
     box-shadow: rgba(75, 203, 152, 0.502) 0px 60px 60px -12px inset, rgba(108, 244, 190, 0.355) 0px 18px 36px -18px inset;
 }

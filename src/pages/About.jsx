@@ -11,7 +11,7 @@ export default function About() {
   useTitle("AboutUs");
   return (
     <div>
-      <div className="w-full lg:w-9/12 mx-auto">
+      <div id="shadow" className="w-full mx-auto">
         <div className="text-center text-transparent bg-clip-text bg-gradient-to-r from-cyan-500 to-blue-500 mt-6">
           <h1 className="text-3xl lg:text-5xl font-bold uppercase">About us</h1>
           <p className="font-light text-xl leading-tight lg:text-2xl tracking-wide w-3/4 mx-auto">

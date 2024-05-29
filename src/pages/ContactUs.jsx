@@ -1,6 +1,6 @@
 export default function ContactUs() {
   return (
-    <div>
+    <div id="shadow">
       <h1 className="text-3xl font-bold text-center text-black-500">
         Contact with developers
       </h1>

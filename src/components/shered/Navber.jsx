@@ -106,8 +106,8 @@ export default function Navber() {
         </div>
         <div className="navbar-end ">
           {user && (
-            <Link onClick={handleLogOut} className="btn mr-1">
-              <FaLockOpen className="me-2 my-btn" />
+            <Link onClick={handleLogOut} className="my-btn flex mr-1">
+              <FaLockOpen className="me-2" />
               Logout
             </Link>
           )}

@@ -1,3 +1,4 @@
+import Swal from "sweetalert2";
 import { useState } from "react";
 import { useLoaderData } from "react-router-dom";
 
@@ -13,6 +14,18 @@ export default function UpdateBook() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    const confirmation = await Swal.fire({
+      title: "Are you sure you want to update the book?",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonText: "Yes, update it!",
+      cancelButtonText: "No, cancel",
+    });
+
+    if (!confirmation.isConfirmed) {
+      return;
+    }
+
     const form = e.target;
     const id = form.id.value;
     const title = form.title.value;
@@ -22,15 +35,38 @@ export default function UpdateBook() {
     const img_url = form.img_url.value;
 
     const data = { id, title, price, description, author, img_url };
-    await fetch(`http://localhost:3000/books/${book.id}`, {
-      method: "PATCH",
-      headers: {
-        "Content-type": "application/json",
-      },
-      body: JSON.stringify(data),
-    })
-      .then((res) => res.json())
-      .then((data) => console.log(data));
+
+    try {
+      const response = await fetch(`http://localhost:3000/books/${book.id}`, {
+        method: "PATCH",
+        headers: {
+          "Content-type": "application/json",
+        },
+        body: JSON.stringify(data),
+      });
+
+      if (response.ok) {
+        const result = await response.json();
+        Swal.fire({
+          title: "Success!",
+          text: "Book updated successfully!",
+          icon: "success",
+        });
+        console.log(result);
+      } else {
+        Swal.fire({
+          title: "Error!",
+          text: "Failed to update the book.",
+          icon: "error",
+        });
+      }
+    } catch (error) {
+      Swal.fire({
+        title: "Error!",
+        text: "An error occurred while updating the book.",
+        icon: "error",
+      });
+    }
   };
 
   return (
@@ -109,7 +145,7 @@ export default function UpdateBook() {
               <input
                 type="submit"
                 value="Update Book"
-                className="w-full max-w-xl mt-8  my-btn"
+                className="w-full max-w-xl mt-8 my-btn"
               />
             </div>
           </div>

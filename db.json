@@ -2,25 +2,25 @@
   "books": [
     {
       "id": "1",
-      "title": "Bangla",
-      "price": "185462",
-      "author": "Amzadul Islam",
+      "title": "Math",
+      "price": "1000",
+      "author": "Mohammad Amzadul Islam ",
       "description": "A novel about the serious issues of rape and racial inequality told from a child's perspective.",
       "img_url": "https://i.ibb.co/9ykm8pB/pile-of-books-with-pages-open-by-wind-royalty-free-image-1600785994.jpg"
     },
     {
       "id": "2",
-      "title": "1984",
-      "price": 15.99,
-      "author": "George Orwell",
+      "title": "English",
+      "price": "150",
+      "author": "Rakib Mohammad Ammar",
       "description": "A dystopian novel set in a totalitarian society ruled by Big Brother.",
       "img_url": "https://i.ibb.co/jW54h2W/top-10-books-every-college-student-read-e1464023124869.jpg"
     },
     {
       "id": "3",
-      "title": "The Great Gatsby",
-      "price": 10.99,
-      "author": "F. Scott Fitzgerald",
+      "title": "Physics",
+      "price": "1099",
+      "author": "Sirajul Islam Azad",
       "description": "A novel about the American dream and the roaring twenties.",
       "img_url": "https://i.ibb.co/R9SbSkX/images.jpg"
     }

@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import Swal from "sweetalert2";
 
 // eslint-disable-next-line react/prop-types
 export default function SingleBookCardDashboard({ book }) {
@@ -6,11 +7,45 @@ export default function SingleBookCardDashboard({ book }) {
   const { id, title, author, price, img_url } = book;
 
   const handleDelete = async () => {
-    await fetch(`http://localhost:3000/books/${id}`, {
-      method: "DELETE",
-    })
-      .then((res) => res.json())
-      .then((data) => console.log(data));
+    const confirmation = await Swal.fire({
+      title: "Are you sure you want to delete this book?",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonText: "Yes, delete it!",
+      cancelButtonText: "No, cancel",
+    });
+
+    if (!confirmation.isConfirmed) {
+      return;
+    }
+
+    try {
+      const response = await fetch(`http://localhost:3000/books/${id}`, {
+        method: "DELETE",
+      });
+
+      if (response.ok) {
+        const result = await response.json();
+        Swal.fire({
+          title: "Deleted!",
+          text: "Book deleted successfully!",
+          icon: "success",
+        });
+        console.log(result);
+      } else {
+        Swal.fire({
+          title: "Error!",
+          text: "Failed to delete the book.",
+          icon: "error",
+        });
+      }
+    } catch (error) {
+      Swal.fire({
+        title: "Error!",
+        text: "An error occurred while deleting the book.",
+        icon: "error",
+      });
+    }
   };
 
   return (
@@ -38,11 +73,9 @@ export default function SingleBookCardDashboard({ book }) {
           </Link>
         </td>
         <td>
-          <Link>
-            <button onClick={handleDelete} className="my-btn">
-              Delete
-            </button>
-          </Link>
+          <button onClick={handleDelete} className="my-btn">
+            Delete
+          </button>
         </td>
       </tr>
     </>

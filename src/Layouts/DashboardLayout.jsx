@@ -7,6 +7,7 @@ export default function DashboardLayout() {
       color: isActive ? "white" : "black",
     };
   };
+
   return (
     <>
       <div className="drawer">
@@ -36,11 +37,11 @@ export default function DashboardLayout() {
               </label>
             </div>
             <div className="flex-1 px-2 mx-2">
-              <li>
-                <NavLink style={navLinkstyle} to={"home"}>
+              <>
+                <NavLink style={navLinkstyle} to={""}>
                   Dashboard
                 </NavLink>
-              </li>
+              </>
             </div>
             <div className="flex-none hidden lg:block">
               <ul className="menu menu-horizontal">

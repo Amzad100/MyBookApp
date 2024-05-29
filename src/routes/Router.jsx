@@ -55,7 +55,7 @@ export const Router = createBrowserRouter([
     errorElement: <ErrorPage />,
     children: [
       {
-        path: "home",
+        path: "",
         element: (
           <PrivateRoute>
             <Dashboard />

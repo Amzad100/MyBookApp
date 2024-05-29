@@ -1,8 +1,14 @@
-import { FaFacebook, FaYoutube, FaTwitter, FaInstagram, FaLinkedin } from 'react-icons/fa';
-import useTitle from '../hooks/useTitle';
+import {
+  FaFacebook,
+  FaYoutube,
+  FaTwitter,
+  FaInstagram,
+  FaLinkedin,
+} from "react-icons/fa";
+import useTitle from "../hooks/useTitle";
 
 export default function About() {
-  useTitle('AboutUs');
+  useTitle("AboutUs");
   return (
     <div>
       <div className="w-full lg:w-9/12 mx-auto">
@@ -19,11 +25,12 @@ export default function About() {
                 Our History
               </h1>
               <p className="text-gray-500 leading-tight mt-4">
-                We propose to develop InsightQuest an innovative online survey
-                platform that empowers individuals and organizations to create,
-                distribute, and analyze surveys effortlessly. The platform aims
-                to provide users with an intuitive and feature-rich environment
-                to collect valuable feedback and insights from respondents.
+                The concept of our innovative book application was born out of a
+                passion for reading and a desire to enhance the way individuals
+                access and enjoy books. Recognizing the limitations of
+                traditional reading methods, our team set out to develop a
+                platform that combines the convenience of digital technology
+                with the immersive experience of physical books.
               </p>
             </div>
             <div className=" text-center lg:text-left">
@@ -31,11 +38,14 @@ export default function About() {
                 Our Vision
               </h1>
               <p className="text-gray-500 leading-tight mt-4">
-                We propose to develop InsightQuest, an innovative online survey
-                platform that empowers individuals and organizations to create,
-                distribute, and analyze surveys effortlessly. The platform aims
-                to provide users with an intuitive and feature-rich environment
-                to collect valuable feedback and insights from respondents.
+                Our vision for the book application is to create the ultimate
+                digital reading experience that caters to the diverse
+                preferences of readers worldwide. We aim to provide a platform
+                where users can discover, read, and interact with books in a way
+                that feels personal and engaging. We envision a future where our
+                application becomes the go-to destination for book lovers,
+                offering an extensive library that spans various genres,
+                languages, and formats.
               </p>
             </div>
           </div>

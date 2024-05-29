@@ -3,6 +3,7 @@ import Banner from "../components/home/Banner";
 import BooksCard from "../components/home/BooksCard/BooksCard";
 import useTitle from "../hooks/useTitle";
 import About from "./About";
+import ContactUs from "./ContactUs";
 
 export default function HomePage() {
   const data = useLoaderData();
@@ -11,8 +12,9 @@ export default function HomePage() {
     <>
       <div className="max-w-7xl mx-auto">
         <Banner />
-        <BooksCard data={data}/>
+        <BooksCard data={data} />
         <About />
+        <ContactUs />
       </div>
     </>
   );

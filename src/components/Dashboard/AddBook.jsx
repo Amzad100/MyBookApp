@@ -1,6 +1,20 @@
+import Swal from "sweetalert2";
+
 export default function AddBook() {
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    const result = await Swal.fire({
+      title: "Do you want to add this book?",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonText: "Yes, add it!",
+      cancelButtonText: "No, cancel",
+    });
+
+    if (!result.isConfirmed) {
+      return; // Do nothing if user cancels
+    }
 
     const form = e.target;
     const id = form.id.value;
@@ -10,20 +24,43 @@ export default function AddBook() {
     const description = form.description.value;
     const img_url = form.img_url.value;
 
-    const data = { id, title, price, description,author, img_url };
+    const data = { id, title, price, description, author, img_url };
 
-    await fetch("http://localhost:3000/books", {
-      method: "POST",
-      headers: {
-        "Content-type": "application/json",
-      },
-      body: JSON.stringify(data),
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        console.log(data);
-        form.reset();
+    try {
+      const response = await fetch("http://localhost:3000/books", {
+        method: "POST",
+        headers: {
+          "Content-type": "application/json",
+        },
+        body: JSON.stringify(data),
       });
+
+      const result = await response.json();
+
+      if (response.ok) {
+        Swal.fire({
+          title: "Success!",
+          text: "Book successfully added!",
+          icon: "success",
+        });
+        form.reset();
+      } else {
+        Swal.fire({
+          title: "Error!",
+          text: "Failed to add the book. Please try again.",
+          icon: "error",
+        });
+      }
+
+      console.log(result);
+    } catch (error) {
+      Swal.fire({
+        title: "Error!",
+        text: "An error occurred. Please try again.",
+        icon: "error",
+      });
+      console.error("Error:", error);
+    }
   };
 
   return (
@@ -90,7 +127,7 @@ export default function AddBook() {
               <input
                 type="submit"
                 value="Add a Book"
-                className="w-full max-w-xl mt-8  my-btn"
+                className="w-full max-w-xl mt-8 my-btn"
               />
             </div>
           </div>

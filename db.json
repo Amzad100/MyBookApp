@@ -2,9 +2,9 @@
   "books": [
     {
       "id": "1",
-      "title": "To Kill a Mockingbird",
-      "price": 18.99,
-      "author": "Harper Lee",
+      "title": "Bangla",
+      "price": "185462",
+      "author": "Amzadul Islam",
       "description": "A novel about the serious issues of rape and racial inequality told from a child's perspective.",
       "img_url": "https://i.ibb.co/9ykm8pB/pile-of-books-with-pages-open-by-wind-royalty-free-image-1600785994.jpg"
     },

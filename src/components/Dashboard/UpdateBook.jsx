@@ -1,8 +1,15 @@
+import { useState } from "react";
 import { useLoaderData } from "react-router-dom";
 
 export default function UpdateBook() {
   const book = useLoaderData();
-  console.log(book);
+  const [id, setId] = useState(book.id);
+  const [title, setTitle] = useState(book.title);
+  const [price, setPrice] = useState(book.price);
+  const [author, setAuthor] = useState(book.author);
+  const [description, setDescription] = useState(book.description);
+  const [img_url, setImageURL] = useState(book.img_url);
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -12,10 +19,18 @@ export default function UpdateBook() {
     const price = form.price.value;
     const author = form.author.value;
     const description = form.description.value;
-    const image_url = form.image_url.value;
+    const img_url = form.img_url.value;
 
-    const data = { id, title, price, description, author, image_url };
-    console.log(data);
+    const data = { id, title, price, description, author, img_url };
+    await fetch(`http://localhost:3000/books/${book.id}`, {
+      method: "PATCH",
+      headers: {
+        "Content-type": "application/json",
+      },
+      body: JSON.stringify(data),
+    })
+      .then((res) => res.json())
+      .then((data) => console.log(data));
   };
 
   return (
@@ -28,7 +43,9 @@ export default function UpdateBook() {
               <h1 className="font-bold my-1">Picture URL of the book:</h1>
               <input
                 type="text"
-                name="image_url"
+                name="img_url"
+                value={img_url}
+                onChange={(e) => setImageURL(e.target.value)}
                 placeholder="Picture URL of the book"
                 className="input input-bordered w-full max-w-xl"
               />
@@ -38,6 +55,8 @@ export default function UpdateBook() {
               <input
                 type="text"
                 name="title"
+                value={title}
+                onChange={(e) => setTitle(e.target.value)}
                 placeholder="Book Title"
                 className="input input-bordered w-full max-w-xl"
               />
@@ -47,6 +66,8 @@ export default function UpdateBook() {
               <input
                 type="text"
                 name="author"
+                value={author}
+                onChange={(e) => setAuthor(e.target.value)}
                 placeholder="Author name"
                 className="input input-bordered w-full max-w-xl"
               />
@@ -56,6 +77,8 @@ export default function UpdateBook() {
               <input
                 type="text"
                 name="price"
+                value={price}
+                onChange={(e) => setPrice(e.target.value)}
                 placeholder="Price"
                 className="input input-bordered w-full max-w-xl"
               />
@@ -65,6 +88,8 @@ export default function UpdateBook() {
               <input
                 type="text"
                 name="id"
+                value={id}
+                onChange={(e) => setId(e.target.value)}
                 placeholder="ID"
                 className="input input-bordered w-full max-w-xl"
               />
@@ -74,6 +99,8 @@ export default function UpdateBook() {
               <textarea
                 type="text"
                 name="description"
+                value={description}
+                onChange={(e) => setDescription(e.target.value)}
                 placeholder="Detail description"
                 className="textarea textarea-bordered w-full max-w-xl"
               />
@@ -81,7 +108,7 @@ export default function UpdateBook() {
             <div className="text-center">
               <input
                 type="submit"
-                value="Add a Book"
+                value="Update Book"
                 className="w-full max-w-xl mt-8  my-btn"
               />
             </div>

@@ -8,40 +8,6 @@ export default function DashboardLayout() {
     };
   };
   return (
-    // <>
-    //   <div className="drawer lg:drawer-open">
-    //     <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
-    //     <div className="drawer-content flex flex-col mt-3 ml-3">
-    //       {/* Page content here */}
-    //       <Outlet />
-    //     </div>
-    //     <div className="drawer-side">
-    //       <label
-    //         htmlFor="my-drawer-2"
-    //         aria-label="close sidebar"
-    //         className="drawer-overlay"
-    //       ></label>
-    //       <ul className="menu p-4 w-80 min-h-full bg-base-200 text-base-content">
-    //         {/* Sidebar content here */}
-    //         <li>
-    //           <NavLink style={navLinkstyle} to={"dashboard/allbooks"}>
-    //             All Books
-    //           </NavLink>
-    //         </li>
-    //         <li>
-    //           <NavLink style={navLinkstyle} to={"dashboard/addbook"}>
-    //             Add Book
-    //           </NavLink>
-    //         </li>
-    //         <li>
-    //           <NavLink style={navLinkstyle} to={"/"}>
-    //             Home
-    //           </NavLink>
-    //         </li>
-    //       </ul>
-    //     </div>
-    //   </div>
-    // </>
     <>
       <div className="drawer">
         <input id="my-drawer-3" type="checkbox" className="drawer-toggle" />
@@ -69,17 +35,23 @@ export default function DashboardLayout() {
                 </svg>
               </label>
             </div>
-            <div className="flex-1 px-2 mx-2">Dashboard</div>
+            <div className="flex-1 px-2 mx-2">
+              <li>
+                <NavLink style={navLinkstyle} to={"home"}>
+                  Dashboard
+                </NavLink>
+              </li>
+            </div>
             <div className="flex-none hidden lg:block">
               <ul className="menu menu-horizontal">
                 {/* Navbar menu content here */}
                 <li>
-                  <NavLink style={navLinkstyle} to={"dashboard/allbooks"}>
+                  <NavLink style={navLinkstyle} to={"allbooks"}>
                     All Books
                   </NavLink>
                 </li>
                 <li>
-                  <NavLink style={navLinkstyle} to={"dashboard/addbook"}>
+                  <NavLink style={navLinkstyle} to={"addbook"}>
                     Add Book
                   </NavLink>
                 </li>
@@ -103,12 +75,12 @@ export default function DashboardLayout() {
           <ul className="menu p-4 min-h-full bg-base-200">
             {/* Sidebar content here */}
             <li>
-              <NavLink style={navLinkstyle} to={"dashboard/allbooks"}>
+              <NavLink style={navLinkstyle} to={"allbooks"}>
                 All Books
               </NavLink>
             </li>
             <li>
-              <NavLink style={navLinkstyle} to={"dashboard/addbook"}>
+              <NavLink style={navLinkstyle} to={"addbook"}>
                 Add Book
               </NavLink>
             </li>

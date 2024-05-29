@@ -8,9 +8,9 @@ export default function AddBook() {
     const price = form.price.value;
     const author = form.author.value;
     const description = form.description.value;
-    const image_url = form.image_url.value;
+    const img_url = form.img_url.value;
 
-    const data = { id, title, price, description,author, image_url };
+    const data = { id, title, price, description,author, img_url };
 
     await fetch("http://localhost:3000/books", {
       method: "POST",
@@ -36,7 +36,7 @@ export default function AddBook() {
               <h1 className="font-bold my-1">Picture URL of the book:</h1>
               <input
                 type="text"
-                name="image_url"
+                name="img_url"
                 placeholder="Picture URL of the book"
                 className="input input-bordered w-full max-w-xl"
               />

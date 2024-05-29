@@ -33,7 +33,7 @@ export default function SingleBookCardDashboard({ book }) {
           </Link>
         </td>
         <td>
-          <Link to={`/books/${id}`}>
+          <Link to={`updatebook/${id}`}>
             <button className="my-btn">Update</button>
           </Link>
         </td>

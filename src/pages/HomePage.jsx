@@ -4,6 +4,7 @@ import BooksCard from "../components/home/BooksCard/BooksCard";
 import useTitle from "../hooks/useTitle";
 import About from "./About";
 import ContactUs from "./ContactUs";
+import ReviewSectionHome from "../components/home/ReviewSection/ReviewSectionHome";
 
 export default function HomePage() {
   const data = useLoaderData();
@@ -14,6 +15,7 @@ export default function HomePage() {
         <Banner />
         <BooksCard data={data} />
         <About />
+        <ReviewSectionHome />
         <ContactUs />
       </div>
     </>

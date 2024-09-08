@@ -6,13 +6,14 @@ import GitHubLogin from "../Login-Registration/GitHubLogin";
 import useTitle from "../../hooks/useTitle";
 import Swal from "sweetalert2";
 import useAuth from "../../hooks/useAuth";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 export default function Login() {
   useTitle("Login");
   const { signIn, user } = useAuth();
   const navigate = useNavigate();
   const location = useLocation();
+  const [errorMessage, setErrorMessage] = useState('');
 
   const from = location?.state?.from?.pathname || "/";
 
@@ -23,18 +24,20 @@ export default function Login() {
     const password = form.password.value;
     console.log(email, password);
 
-    await signIn(email, password)
-      .then((resutl) => {
-        const user = resutl.user;
-        console.log(user);
-        Swal.fire({
-          icon: "success",
-          title: "Login successfully",
-          showConfirmButton: false,
-          timer: 1500,
-        });
-      })
-      .catch((error) => console.log(error));
+    try {
+      const result = await signIn(email, password);
+      const user = result.user;
+      console.log(user);
+      Swal.fire({
+        icon: "success",
+        title: "Login successfully",
+        showConfirmButton: false,
+        timer: 1500,
+      });
+    } catch (error) {
+      console.log(error);
+      setErrorMessage("Invalid email or password. Please try again.");
+    }
   };
 
   useEffect(() => {
@@ -52,6 +55,11 @@ export default function Login() {
               <h1 className=" text-3xl font-semibold text-center my-5 border-b-2 border-[#f4976c] py-2">
                 Login Now
               </h1>
+
+              {errorMessage && (
+                <p className="text-red-500 text-center mb-4">{errorMessage}</p>
+              )}
+
               <label className="label">
                 <span className="label-text font-semibold">
                   *Enter Your Email
@@ -73,7 +81,7 @@ export default function Login() {
                 type="password"
                 placeholder="Password"
                 name="password"
-                className="input input-bordered input-accent w-full "
+                className="input input-bordered input-accent w-full"
               />
 
               <div className="mt-4">

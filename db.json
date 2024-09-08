@@ -3,7 +3,7 @@
     {
       "id": "1",
       "title": "Math",
-      "price": "1000",
+      "price": "10000000",
       "author": "Mohammad Amzadul Islam ",
       "description": "A novel about the serious issues of rape and racial inequality told from a child's perspective.",
       "img_url": "https://i.ibb.co/9ykm8pB/pile-of-books-with-pages-open-by-wind-royalty-free-image-1600785994.jpg"
@@ -17,12 +17,20 @@
       "img_url": "https://i.ibb.co/jW54h2W/top-10-books-every-college-student-read-e1464023124869.jpg"
     },
     {
-      "id": "3",
-      "title": "Physics",
-      "price": "1099",
+      "id": "12",
+      "title": "wergwrg",
+      "price": "203",
+      "description": "sdgwgwg",
       "author": "Sirajul Islam Azad",
-      "description": "A novel about the American dream and the roaring twenties.",
       "img_url": "https://i.ibb.co/R9SbSkX/images.jpg"
+    },
+    {
+      "id": "3",
+      "title": "dsgdsf",
+      "price": "455",
+      "description": "sdfsdfdf",
+      "author": "Imran Khan Tomin",
+      "img_url": "https://i.ibb.co/K6xcc0w/Bangladesh.jpg"
     }
   ]
 }

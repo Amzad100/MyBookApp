@@ -10,6 +10,7 @@ export default function UpdateBook() {
   const [author, setAuthor] = useState(book.author);
   const [description, setDescription] = useState(book.description);
   const [img_url, setImageURL] = useState(book.img_url);
+  const [category, setCategory] = useState(book.category);  // New state for category
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -33,8 +34,9 @@ export default function UpdateBook() {
     const author = form.author.value;
     const description = form.description.value;
     const img_url = form.img_url.value;
+    const category = form.category.value;  // New category field
 
-    const data = { id, title, price, description, author, img_url };
+    const data = { id, title, price, description, author, img_url, category };
 
     try {
       const response = await fetch(`http://localhost:3000/books/${book.id}`, {
@@ -140,6 +142,21 @@ export default function UpdateBook() {
                 placeholder="Detail description"
                 className="textarea textarea-bordered w-full max-w-xl"
               />
+            </div>
+            <div>
+              <h1 className="font-bold my-1">Category</h1>
+              <select
+                name="category"
+                value={category}
+                onChange={(e) => setCategory(e.target.value)}
+                className="select select-bordered w-full max-w-xl"
+              >
+                <option value="Bangla">Bangla</option>
+                <option value="English">English</option>
+                <option value="ICT">ICT</option>
+                <option value="Math">Math</option>
+                <option value="Other">Other</option>
+              </select>
             </div>
             <div className="text-center">
               <input

@@ -14,8 +14,8 @@ export default function HomePage() {
       <div className="max-w-7xl mx-auto">
         <Banner />
         <BooksCard data={data} />
-        <About />
         <ReviewSectionHome />
+        <About />
         <ContactUs />
       </div>
     </>

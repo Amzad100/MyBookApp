@@ -3,7 +3,7 @@ import user from "../../../assets/user-1.png";
 
 const ReviewSectionHome = () => {
     return (
-        <div className="my-24 overflow-hidden relative z-0">
+        <div id="shadow" className="my-24 overflow-hidden relative z-0">
             <h3 className="md:text-5xl text-2xl mb-12 font-semibold text-center my-text">
                 Happy <span className="text-bike-primary">Clients Says</span>
             </h3>
